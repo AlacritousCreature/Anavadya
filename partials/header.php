@@ -24,10 +24,13 @@
                     <a href="contacts.php" class="nav-link">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <a href="login.php" class="nav-link" id="signin">Admin SignIN</a>
+                    <a href="register.php" class="nav-link" id="signin">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a href="register.php" class="nav-link">Sub-Admin register</a>
+                    <a href="login.php" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="logout.php" class="nav-link">Logout</a>
                 </li>
 
             </ul>

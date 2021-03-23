@@ -1,3 +1,61 @@
+<?php
+//This script will handle login
+session_start();
+
+//Check if the user is already logged in
+if(isset($_SESSION['username'])) {
+    header("location: home.php");
+    exit;
+}
+
+require_once "config.php";
+
+$username = $password = "";
+$err = "";
+
+// if request method is post
+if($_SERVER['REQUEST_METHOD'] == "POST") {
+    if(empty(trim($_POST['username'])) || empty(trim($_POST['password']))) {
+        $err = "Please enter username + password";
+    }
+
+    else {
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']);
+    }
+
+    if(empty($err)) {
+        $sql = "SELECT id, username, password FROM users WHERE username = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $param_username);
+        $param_username = $username;
+
+        // Try to execute this statement
+        if(mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_store_result($stmt);
+            if(mysqli_stmt_num_rows($stmt) == 1) {
+                mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                if(mysqli_stmt_fetch($stmt)) {
+                    if(password_verify($password, $hashed_password)) {
+                        // This means password is correct. Allow user to login
+                        session_start();
+                        $_SESSION["username"] = $username;
+                        $_SESSION["id"] = $id;
+                        $_SESSION["loggedin"] = true;
+
+                        // Redirect user to home page
+                        header("location: home.php");
+                    }
+                }
+            }
+        } 
+    }
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -108,19 +166,17 @@
                         <h3 class="text-center font-weight-bold text-primary">
                             ADMIN LOGIN
                         </h3>
-                        <form action="">
+                        <form class="row g-3" action="" method="post" style="display: grid;">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Username</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="John Doe">
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" placeholder="Username">
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label">Password</label>
-                                <input type="text" class="form-control" name="email" id="email" placeholder="johndoe@example.com">
+                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
                             </div>
 
-                            <button class="btn btn-block btn-primary">
-                                Sign In
-                            </button>
+                            <button type="submit" class="btn btn-primary">Sign In</button>
                         </form>
                     </div>
                 </div>

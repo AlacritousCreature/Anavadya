@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
+    header("location: login.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +31,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script>
     $(function() {
-      $("#navid").load("partials/header.php");
+      // $("#navid").load("partials/headerHome.php");
+      
       $("#footid").load("partials/footer.php");
     });
   </script>
@@ -31,7 +42,50 @@
 
 
 
-  <div id="navid"></div>
+  <!-- <div id="navid"></div> -->
+  <nav id="mainNavbar" class=" stroke navbar navbar-expand-md fixed-top navbar-dark">
+        <a class="navbar-brand">
+            <img class="navlogo" src="public/assets/24-hours.png"> Anavadya
+        </a>
+
+        <button class="navbar-toggler nav-toggle-btn" type="button" data-toggle="collapse" data-target="#navLinks" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+            </span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navLinks">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a href="home.php" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="buildingDetails.php" class="nav-link">Building Details</a>
+                </li>
+                <li class="nav-item">
+                    <a href="occupancy.php" class="nav-link">Occupancy</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contacts.php" class="nav-link">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="register.php" class="nav-link" id="signin">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.php" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="logout.php" class="nav-link">Logout</a>
+                </li>
+
+            </ul>
+
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item active">
+                <a class="nav-link" href="#"><img src="https://img.icons8.com/metro/26/ffffff/user-male.png"/><?php echo "Welcome ". $_SESSION['username'] ?></a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
 
   <style rel="stylesheet" type="text/css">
     body {
@@ -73,7 +127,12 @@
         </div>
       </div>
     </div>
+    <div class="container mt-6">
+      <h3><?php echo "Welcome ". $_SESSION['username'] ?> | Now You May Use This Website</h3>
+      <hr>
+      </div>
   </section>
+
   <div id="footid"></div>
 
 </body>

@@ -1,3 +1,97 @@
+<?php
+require_once "config.php";
+
+$username = $password = $confirm_password = "";
+$username_err = $password_err = $confirm_password_err = "";
+
+if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+    //check if the username is empty
+    if(empty(trim($_POST["username"]))) {
+        $username_err = "Username cannot be blank";
+    }
+
+    else {
+        $sql = "SELECT id FROM users WHERE username = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+
+        if($stmt) {
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+
+            // Set the value of param username
+            $param_username = trim($_POST['username']);
+
+            // Try to execute this statement
+            if(mysqli_stmt_execute($stmt)) {
+                mysqli_stmt_store_result($stmt);
+                if(mysqli_stmt_num_rows($stmt) == 1) {
+                    $username_err = "This username is already taken";
+                }
+    
+                else {
+                    $username = trim($_POST['username']);
+                }
+            }
+            else {
+                echo "Something went wrong";
+            }
+            
+        }
+        mysqli_stmt_close($stmt);
+    }
+
+    // mysqli_stmt_close($stmt);
+
+
+
+// Check for password
+if(empty(trim($_POST['password']))) {
+    $password_err = "Password cannot be blank";
+}
+
+elseif(strlen(trim($_POST['password'])) < 5) {
+    $password_err = "Password cannot be less than 5 characters";
+}
+
+else {
+    $password = trim($_POST['password']);
+}
+
+// Check for confirm password field
+if(trim($_POST['password']) != trim($_POST['confirm_password'])) {
+    $password_err = "Password should match";
+}
+
+// If there were no errors, go ahead and insert into the database
+if(empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
+
+    $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+    $stmt = mysqli_prepare($conn, $sql);
+    if($stmt) {
+        mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+
+        // Set these parameters
+        $param_username = $username;
+        $param_password = password_hash($password, PASSWORD_DEFAULT);
+
+        // Try to execute the query
+        if(mysqli_stmt_execute($stmt)) {
+            header("location: login.php");
+        }
+        else {
+            echo "Something went wrong... cannot redirect!";
+        }
+    }
+    mysqli_stmt_close($stmt);
+}
+
+    mysqli_close($conn);
+
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,29 +200,24 @@
                 <div class="order-lg-1 col-lg-6">
                     <div class="card rounded shadow p-3 p-md-4">
                         <h3 class="text-center font-weight-bold text-primary">
-                            SUB-ADMIN REGISTER
+                            Please register here!
                         </h3>
-                        <form action="">
-                            <div class="mb-3">
+                        <form class="row g-3" action="" method="post" style="display: grid;">
+                            <div class="col-md-6">
                                 <label for="name" class="form-label">Username</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="John Doe">
+                                <input type="text" class="form-control" id="inputEmail4" name="username" placeholder="Username">
                             </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Password</label>
-                                <input type="text" class="form-control" name="email" id="email" placeholder="xxxx xxxx">
+                            <div class="col-md-6">
+                                <label for="inputPassword4" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="inputPassword4" name="password" placeholder="Password">
                             </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="" id="" placeholder="johndoe">
+                            <div class="col-md-6">
+                                <label for="inputPassword4" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="inputPassword" name="confirm_password" placeholder="Confirm Password">
                             </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Photo Link</label>
-                                <input type="text" class="form-control" name="" id="" placeholder="johndoe@example.com">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Register</button>
                             </div>
-
-                            <button class="btn btn-block btn-primary">
-                                Sign In
-                            </button>
                         </form>
                     </div>
                 </div>

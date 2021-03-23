@@ -5,13 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="footer, address, phone, icons" />
-    <link rel="icon" href="public/assets/24-hours.png" sizes="40x40" type="image/svg">
-
-
+    <link rel="icon" href="../public/assets/24-hours.png" sizes="40x40" type="image/svg">
     <title>Anavadya</title>
     <link rel="stylesheet" type="text/css" href="public/css/main.css">
     <!-- Link to Bootstrap-->
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
@@ -25,7 +22,6 @@
         });
     </script>
 </head>
-
 <body>
     <div id="navid"></div>
     <style rel="stylesheet" type="text/css">
@@ -34,8 +30,6 @@
         }
     </style>
     <h1>all six rooms</h1>
-
-
     <h1 style="padding-top: 5rem;">Showcase your buiness cards and take orders!</h1>
     <section class="h-100">
         <div class="container py-5">
@@ -59,7 +53,6 @@
                                 <li>Manager:
                                     Manager name
                                 </li>
-
                             </ul>
                             </p>
                             <div class="">
@@ -67,7 +60,7 @@
                                     <div class="col">
                                         <div class="btn-group btn-group-sm">
                                             <div class="btn btn-warning">
-                                                Occupancy
+                                            <a href="graph.php?room=1">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
                                                 History
@@ -103,7 +96,6 @@
                                 <li>Manager:
                                     Manager name
                                 </li>
-
                             </ul>
                             </p>
                             <div class="">
@@ -111,7 +103,7 @@
                                     <div class="col">
                                         <div class="btn-group btn-group-sm">
                                             <div class="btn btn-warning">
-                                                Occupancy
+                                                <a href="graph.php?room=2">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
                                                 History
@@ -147,7 +139,6 @@
                                 <li>Manager:
                                     Manager name
                                 </li>
-
                             </ul>
                             </p>
                             <div class="">
@@ -155,7 +146,7 @@
                                     <div class="col">
                                         <div class="btn-group btn-group-sm">
                                             <div class="btn btn-warning">
-                                                Occupancy
+                                            <a href="graph.php?room=3">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
                                                 History
@@ -191,7 +182,6 @@
                                 <li>Manager:
                                     Manager name
                                 </li>
-
                             </ul>
                             </p>
                             <div class="">
@@ -199,7 +189,7 @@
                                     <div class="col">
                                         <div class="btn-group btn-group-sm">
                                             <div class="btn btn-warning">
-                                                Occupancy
+                                            <a href="graph.php?room=4">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
                                                 History
@@ -235,7 +225,6 @@
                                 <li>Manager:
                                     Manager name
                                 </li>
-
                             </ul>
                             </p>
                             <div class="">
@@ -243,7 +232,7 @@
                                     <div class="col">
                                         <div class="btn-group btn-group-sm">
                                             <div class="btn btn-warning">
-                                                Occupancy
+                                            <a href="graph.php?room=5">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
                                                 History
@@ -260,9 +249,7 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- ROOM 6 -->
-
                 <div class="col">
                     <div class="card shadow h-100" style="border: none">
                         <img src="https://5.imimg.com/data5/AY/RQ/MY-12051589/showroom-interior-designing-500x500.jpg" class="card-img-top" alt="Image Card laceholder">
@@ -281,7 +268,6 @@
                                 <li>Manager:
                                     Manager name
                                 </li>
-
                             </ul>
                             </p>
                             <div class="">
@@ -289,7 +275,7 @@
                                     <div class="col">
                                         <div class="btn-group btn-group-sm">
                                             <div class="btn btn-warning">
-                                                Occupancy
+                                            <a href="graph.php?room=6">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
                                                 History
@@ -306,13 +292,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-
     <div id="footid"></div>
-
 </body>
-
 </html>

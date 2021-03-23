@@ -63,7 +63,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="footer, address, phone, icons" />
-    <link rel="icon" href="../public/assets/24-hours.png" sizes="40x40" type="image/svg">
+    <link rel="icon" href="public/assets/24-hours.png" sizes="40x40" type="image/svg">
 
 
     <title>Anavadya</title>

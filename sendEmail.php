@@ -17,15 +17,15 @@ if (isset($_POST['name']) && isset($_POST['email'])) {
     $mail->isSMTP();
     $mail->Host = "smtp.gmail.com";
     $mail->SMTPAuth = true;
-    $mail->Username = "your email";
-    $mail->Password = 'email password';
+    $mail->Username = "IIT2019007@iiita.ac.in";
+    $mail->Password = 'Sam@1234';
     $mail->Port = 465;
     $mail->SMTPSecure = "ssl";
 
     //email settings
     $mail->isHTML(true);
     $mail->setFrom($email, $name);
-    $mail->addAddress("your email");
+    $mail->addAddress("IIT2019007@iiita.ac.in");
     $mail->Subject = ("$email ($subject)");
     $mail->Body = $body;
 

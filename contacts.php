@@ -111,22 +111,27 @@
                         <p class="text-center">
                             Have a query? Drop us a message right now
                         </p>
-                        <form action="">
+                        <h3 id="noti"></h3>
+                        <form id="myForm" method="POST">
                             <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="John Doe">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter Name">
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="text" class="form-control" name="email" id="email" placeholder="johndoe@example.com">
+                                <label class="form-label">Email</label>
+                                <input type="text" class="form-control" id="email" placeholder="Enter your Email Id">
                             </div>
                             <div class="mb-3">
-                                <label for="message" class="form-label">Message</label>
-                                <textarea class="form-control" name="message" id="message" cols="30" rows="6" placeholder="Describe your query here"></textarea>
+                                <label class="form-label">Suject</label>
+                                <input placeholder="Subject" id="subject" type="text" class="form-control" required />
                             </div>
-                            <div class="btn btn-block btn-info">
+                            <div class="mb-3">
+                                <label class="form-label">Message</label>
+                                <textarea class="form-control" id="body" cols="30" rows="6" placeholder="Describe your query here"></textarea>
+                            </div>
+                            <button onclick="sendEmail()" value="Send an Email" class="btn btn-block btn-info">
                                 Send
-                            </div>
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -136,6 +141,42 @@
 
 
     <div id="footid"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function sendEmail() {
+            var name = $("#name");
+            var email = $("#email");
+            var subject = $("#subject");
+            var body = $("#body");
+            if (isNotEmpty(name) && isNotEmpty(email) && isNotEmpty(subject) && isNotEmpty(body)) {
+                $.ajax({
+                    url: 'sendEmail.php',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        name: name.val(),
+                        email: email.val(),
+                        subject: subject.val(),
+                        body: body.val()
+                    },
+                    success: function(response) {
+                        $('#myForm')[0].reset();
+                        $('#noti').text("Message sent successfully.");
+                    }
+                });
+            }
+        }
+
+        function isNotEmpty(caller) {
+            if (caller.val() == "") {
+                caller.css('border', '1px solid red');
+                return false;
+            } else {
+                caller.css('border');
+                return true;
+            }
+        }
+    </script>
 
 </body>
 

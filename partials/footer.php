@@ -9,8 +9,8 @@
             <a href="home.php">Home</a> |
             <a href="buildingDetails.phpo">Building Details</a> |
             <a href="occupancy.php">Present Occupancy</a> |
-            <a href="login.php">Login</a> |
-            <a href="register.php">Login</a>
+            <a href="login.php">Admin Login</a> |
+            <a href="register.php">Sub-Admin Register</a>
         </p>
 
         <p class="footer-company-name">© 2021 Anavadya </p>

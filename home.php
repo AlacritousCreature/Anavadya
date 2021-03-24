@@ -29,6 +29,9 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
 
   <!-- Link to font awesome-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Link to sweet alert -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script>
     $(function() {
       // $("#navid").load("partials/headerHome.php");
@@ -94,6 +97,28 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
   </style>
 
   <section class="h-100" style="padding-top:5rem;">
+
+
+  <?php
+    if(isset($_SESSION['statusHome'])) {
+        ?>
+            <script>
+
+                swal({
+                    title: "LoggedIn Successfully!",
+                    icon: "success",
+                    button: "Ok",
+                })
+                .then((value) => {
+                swal("<?php echo "Hey ".$_SESSION['username'] ?>", "<?php echo $_SESSION['statusHome'] ?>");
+                });
+            
+            </script>
+            
+        <?php
+        unset($_SESSION['statusHome']);
+    }    
+  ?>
     <div class="position-absolute h-100 w-100" style="
             z-index: -1;
             background-repeat: no-repeat;
@@ -127,10 +152,6 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
         </div>
       </div>
     </div>
-    <div class="container mt-6">
-      <h3><?php echo "Welcome ". $_SESSION['username'] ?> | Now You May Use This Website</h3>
-      <hr>
-      </div>
   </section>
 
   <section class="h-100">

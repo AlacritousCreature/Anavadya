@@ -42,7 +42,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                         $_SESSION["username"] = $username;
                         $_SESSION["id"] = $id;
                         $_SESSION["loggedin"] = true;
-
+                        
+                        $_SESSION["statusHome"] = "Welcome to Anavadya";
                         // Redirect user to home page
                         header("location: home.php");
                     }

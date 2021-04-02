@@ -2,7 +2,7 @@
 
 session_start();
 
-if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     header("location: login.php");
 }
 
@@ -32,6 +32,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
         });
     </script>
 </head>
+
 <body>
     <div id="navid"></div>
     <style rel="stylesheet" type="text/css">
@@ -39,10 +40,34 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
             background-image: linear-gradient(-225deg, #DFFFCD 0%, #90F9C4 48%, #39F3BB 100%);
         }
     </style>
-    <h1>all six rooms</h1>
-    <h1 style="padding-top: 5rem;">Showcase your buiness cards and take orders!</h1>
+    <div class="container" style="padding-top:10rem;">
+        <div id="banner" class="row justify-content-between align-items-center">
+            <div class="col-lg-5" id="descriptive">
+                <div class="contents d-flex flex-column justify-content-around">
+                    <h5 class="mb-4 font-weight-bold" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #4D2768;">How Anavadya shows realtime occupancy?</h5>
+                    <h1 class="mb-4 mt-2 font-weight-bold" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: black;">
+                        Scroll down and see occupancy of rooms in your building.
+                    </h1>
+                    <h5 class="mb-4 mt-1 font-weight-bold" style="color: #281436;">
+
+                    </h5>
+                    <div class="mt-1">
+                        <button type="button" class="btn mb-2 btn-primary"><a href="#scroll-target"></a>See current Occupancy</a></button>
+                        <a type="button" class="btn mb-2 ml-4 btn-primary" href="">Add Rooms</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-5 mt-3 mt-lg-0" id="illustration">
+                <div class="row justify-content-center align-items-center">
+                    <img class="img-fluid" src="public/assets/occupancy.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section class="h-100">
-        <div class="container py-5">
+        <div class="container py-5" id="scroll-target">
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 <!-- ROOM 1 -->
                 <div class="col">
@@ -70,7 +95,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                                     <div class="col">
                                         <div class="btn-group btn-group-sm">
                                             <div class="btn btn-warning">
-                                            <a href="graph.php?room=1">Occupancy</a>
+                                                <a href="graph.php?room=1">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
                                                 History
@@ -156,7 +181,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                                     <div class="col">
                                         <div class="btn-group btn-group-sm">
                                             <div class="btn btn-warning">
-                                            <a href="graph.php?room=3">Occupancy</a>
+                                                <a href="graph.php?room=3">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
                                                 History
@@ -199,7 +224,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                                     <div class="col">
                                         <div class="btn-group btn-group-sm">
                                             <div class="btn btn-warning">
-                                            <a href="graph.php?room=4">Occupancy</a>
+                                                <a href="graph.php?room=4">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
                                                 History
@@ -242,7 +267,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                                     <div class="col">
                                         <div class="btn-group btn-group-sm">
                                             <div class="btn btn-warning">
-                                            <a href="graph.php?room=5">Occupancy</a>
+                                                <a href="graph.php?room=5">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
                                                 History
@@ -285,7 +310,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                                     <div class="col">
                                         <div class="btn-group btn-group-sm">
                                             <div class="btn btn-warning">
-                                            <a href="graph.php?room=6">Occupancy</a>
+                                                <a href="graph.php?room=6">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
                                                 History
@@ -307,4 +332,5 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     </section>
     <div id="footid"></div>
 </body>
+
 </html>

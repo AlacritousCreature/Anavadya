@@ -34,7 +34,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script>
     $(function() {
-      // $("#navid").load("partials/headerHome.php");
+    //   $("#navid").load("partials/headerHome.php");
       
       $("#footid").load("partials/footer.php");
     });
@@ -72,16 +72,25 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                 <li class="nav-item">
                     <a href="register.php" class="nav-link" id="signin">Register</a>
                 </li>
-                <li class="nav-item">
-                    <a href="login.php" class="nav-link">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a href="logout.php" class="nav-link">Logout</a>
-                </li>
-
+                <?php
+                    if(isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == true) {
+                        ?>
+                            <li class="nav-item">
+                                <a href="logout.php" class="nav-link">Logout</a>
+                            </li>
+                        <?php
+                    }
+                    else {
+                        ?>
+                            <li class="nav-item">
+                                <a href="login.php" class="nav-link">Login</a>
+                            </li>
+                        <?php
+                    }
+                ?>
             </ul>
 
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav">
                 <li class="nav-item active">
                 <a class="nav-link" href="#"><img src="https://img.icons8.com/metro/26/ffffff/user-male.png"/><?php echo "Welcome ". $_SESSION['username'] ?></a>
                 </li>

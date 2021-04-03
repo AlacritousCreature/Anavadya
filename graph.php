@@ -1,4 +1,11 @@
 <?php
+
+session_start();
+
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
+    header("location: login.php");
+}
+
  $connect= mysqli_connect('localhost:3307', 'root', '', 'login')
  or die('error connect to server');
  date_default_timezone_set('Asia/Kolkata');

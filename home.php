@@ -139,16 +139,16 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
       <div class="row h-100 justify-content-between align-items-center">
         <div class="col-lg-5 h-50">
           <div class="d-flex flex-column h-100 justify-content-between text-center text-lg-left">
-            <h5>What business are you?</h5>
+            <h5>What kind of building you have?</h5>
             <h1 class="font-weight-bold">
               Use anavadya in your smart building.
             </h1>
             <h5 class="text-muted font-weight-normal">
-              Sub hero message lead. How would you benefit the customer. Short and crisp.
+              Make you buildings safe, secure, energy efficient and manage occupancy easily!
             </h5>
             <div class="">
               <div class="btn btn btn-success">
-                Subscribe now
+                Discover its uses
               </div>
               <div class="btn btn ml-3 btn-outline-success">
                 Learn more

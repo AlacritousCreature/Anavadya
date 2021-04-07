@@ -149,7 +149,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                                                 <a href="graph.php?room=1">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
-                                                History
+                                                <a href="history.php?room=1"> History</a>
                                             </div>
                                         </div>
                                     </div>
@@ -192,7 +192,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                                                 <a href="graph.php?room=2">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
-                                                History
+                                              <a href="history.php?room=2"> History</a>
                                             </div>
                                         </div>
                                     </div>
@@ -235,7 +235,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                                                 <a href="graph.php?room=3">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
-                                                History
+                                                <a href="history.php?room=3"> History</a>
                                             </div>
                                         </div>
                                     </div>
@@ -278,7 +278,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                                                 <a href="graph.php?room=4">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
-                                                History
+                                                <a href="history.php?room=4"> History</a>
                                             </div>
                                         </div>
                                     </div>
@@ -321,7 +321,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                                                 <a href="graph.php?room=5">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
-                                                History
+                                                <a href="history.php?room=5"> History</a>
                                             </div>
                                         </div>
                                     </div>
@@ -364,7 +364,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                                                 <a href="graph.php?room=6">Occupancy</a>
                                             </div>
                                             <div class="btn active btn-warning">
-                                                History
+                                                <a href="history.php?room=6"> History</a>
                                             </div>
                                         </div>
                                     </div>

@@ -62,26 +62,25 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                     <a href="register.php" class="nav-link" id="signin">Register</a>
                 </li>
                 <?php
-                    if(isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == true) {
-                        ?>
-                            <li class="nav-item">
-                                <a href="logout.php" class="nav-link">Logout</a>
-                            </li>
-                        <?php
-                    }
-                    else {
-                        ?>
-                            <li class="nav-item">
-                                <a href="login.php" class="nav-link">Login</a>
-                            </li>
-                        <?php
-                    }
+                if (isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == true) {
+                ?>
+                    <li class="nav-item">
+                        <a href="logout.php" class="nav-link">Logout</a>
+                    </li>
+                <?php
+                } else {
+                ?>
+                    <li class="nav-item">
+                        <a href="login.php" class="nav-link">Login</a>
+                    </li>
+                <?php
+                }
                 ?>
             </ul>
 
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                <a class="nav-link" href="#"><img src="https://img.icons8.com/metro/26/ffffff/user-male.png"/><?php echo "Welcome ". $_SESSION['username'] ?></a>
+                    <a class="nav-link" href="#"><img src="https://img.icons8.com/metro/26/ffffff/user-male.png" /><?php echo "Welcome " . $_SESSION['username'] ?></a>
                 </li>
             </ul>
         </div>
@@ -135,7 +134,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                             <p class="card-text flex-grow-1">
                             <ul>
                                 <li>ROOM NAME:
-                                    room name %>
+                                    room name
                                 </li>
                                 <li>Manager:
                                     Manager name

@@ -2,9 +2,10 @@
 
 session_start();
 
-if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     header("location: login.php");
 }
+
 
 ?>
 
@@ -65,26 +66,25 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                     <a href="register.php" class="nav-link" id="signin">Register</a>
                 </li>
                 <?php
-                    if(isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == true) {
-                        ?>
-                            <li class="nav-item">
-                                <a href="logout.php" class="nav-link">Logout</a>
-                            </li>
-                        <?php
-                    }
-                    else {
-                        ?>
-                            <li class="nav-item">
-                                <a href="login.php" class="nav-link">Login</a>
-                            </li>
-                        <?php
-                    }
+                if (isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == true) {
+                ?>
+                    <li class="nav-item">
+                        <a href="logout.php" class="nav-link">Logout</a>
+                    </li>
+                <?php
+                } else {
+                ?>
+                    <li class="nav-item">
+                        <a href="login.php" class="nav-link">Login</a>
+                    </li>
+                <?php
+                }
                 ?>
             </ul>
 
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                <a class="nav-link" href="#"><img src="https://img.icons8.com/metro/26/ffffff/user-male.png"/><?php echo "Welcome ". $_SESSION['username'] ?></a>
+                    <a class="nav-link" href="#"><img src="https://img.icons8.com/metro/26/ffffff/user-male.png" /><?php echo "Welcome " . $_SESSION['username'] ?></a>
                 </li>
             </ul>
         </div>
@@ -98,25 +98,48 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     <link rel="stylesheet" type="text/css" href="public/css/user.css">
     </link>
 
-    <h1 style="margin-top:5rem">Here goes the User Profile</h1>
+    <h2 style="margin-top:8rem;text-align:center;">All the Sub-Admins using this App for Prozone</h2>
 
     <div class="main">
         <ul class="cards">
-            <li class="cards_item">
+            <?php
+            require_once "config.php";
+            function component($username, $userimg)
+            {
+                $element = '
+        <li class="cards_item">
                 <div class="card">
-                    <div class="card_image"><img src="https://akm-img-a-in.tosshub.com/indiatoday/sridevi-story_647_112317110707.jpg?antYEsJW3vuLOS_Tm92vJgdzf5qXBJ5O&size=770:433"></div>
+                    <div class="card_image"><img src="' . $userimg . '"></div>
                     <div class="card_content">
                         <h2 class="card_title">
                             Name
-
                         </h2>
                         <p class="card_text">| Username:
-                            username | Room no:
+                        ' . $username . ' | Room no:
                             room no. |
                             <a href="/user/<%= user._id %>"><button class="btn card_btn">DELETE</button></a>
                     </div>
                 </div>
             </li>
+        ';
+                echo $element;
+            }
+
+            $query = "SELECT * FROM users";
+            mysqli_query($conn, $query) or die('error querring database.');
+            $result = mysqli_query($conn, $query);
+
+            while ($row = mysqli_fetch_array($result)) {
+                component($row['username'], $row['userimg']);
+            }
+
+            ?>
+
+
+
+
+
+
 
         </ul>
     </div>

@@ -1,10 +1,13 @@
 <?php
-require_once "config.php";
+
+session_start();
+
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     header("location: login.php");
 }
-$username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = "";
+require_once "config.php";
+$username = $userimg = $password = $confirm_password = "";
+$username_err = $userimg_err = $password_err = $confirm_password_err = "";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
@@ -38,8 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     // mysqli_stmt_close($stmt);
 
-
-
     // Check for password
     if (empty(trim($_POST['password']))) {
         $password_err = "Password cannot be blank";
@@ -47,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $password_err = "Password cannot be less than 5 characters";
     } else {
         $password = trim($_POST['password']);
+        $userimg = trim($_POST['userimg']);
     }
 
     // Check for confirm password field
@@ -55,15 +57,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     // If there were no errors, go ahead and insert into the database
-    if (empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
+    if (empty($username_err) && empty($userimg_err) && empty($password_err) && empty($confirm_password_err)) {
 
-        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+        $sql = "INSERT INTO users (username, userimg, password) VALUES (?, ?, ?)";
         $stmt = mysqli_prepare($conn, $sql);
         if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+            mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_userimg, $param_password);
 
             // Set these parameters
             $param_username = $username;
+            $param_userimg = $userimg;
             $param_password = password_hash($password, PASSWORD_DEFAULT);
 
             // Try to execute the query
@@ -229,6 +232,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             <div class="col-md-6">
                                 <label for="name" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="inputEmail4" name="username" placeholder="Username">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="userimg" class="form-label">Image URL</label>
+                                <input type="text" class="form-control" id="inputUserimg4" name="userimg" placeholder="Username">
                             </div>
                             <div class="col-md-6">
                                 <label for="inputPassword4" class="form-label">Password</label>

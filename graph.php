@@ -143,6 +143,32 @@ $chart_data = substr($chart_data, 0, -2);
         <br> <br> <br>
         <div id="chart"> </div>
     </div>
+     <div class="container">
+      <h1> Warnings</h1>
+      <br>
+     <?php
+        
+            $query = "SELECT * FROM roomoccupncy where DATE(timeVal)='" . $td . "'AND roomno=" . $room . " AND HOUR(timeVal) ='" . $th . "' ";
+            $result = mysqli_query($connect, $query);
+            $row = mysqli_fetch_array($result);
+            if ($row['strength']<35)
+              {
+                $element='
+                <div class="alert alert-info" role="alert">
+                      Occupuncy is safe ('.$row['strength'].') at present  '.$row['timeVal'].
+                  '</div>  ';
+              echo $element;
+              }
+            else
+            {
+                $element='
+                <div class="alert alert-danger" role="alert">
+                      Occupuncy is more('.$row['strength'].') at '.$row['timeVal'].'. It should be less than 35.
+                  </div>  ';
+              echo $element;
+            }
+        ?>
+       </div>
     <div id="footid"></div>
 </body>
 

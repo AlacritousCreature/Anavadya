@@ -114,9 +114,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                         <h2 class="card_title">
                             Name
                         </h2>
-                        <p class="card_text">| Username:
-                        ' . $username . ' | Room no:
-                            room no. |
+                         <p class="card_text"> Username:
+                        ' . $username . ' <br> Room no: '. $roomno.' <br>
                             <a href="/user/<%= user._id %>"><button class="btn card_btn">DELETE</button></a>
                     </div>
                 </div>
@@ -125,12 +124,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                 echo $element;
             }
 
-            $query = "SELECT * FROM users";
+            $query = "SELECT * FROM users where roomno > 0";
             mysqli_query($conn, $query) or die('error querring database.');
             $result = mysqli_query($conn, $query);
 
             while ($row = mysqli_fetch_array($result)) {
-                component($row['username'], $row['userimg']);
+                component($row['username'], $row['userimg'], $row['roomno']);
             }
 
             ?>

@@ -48,6 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $password_err = "Password cannot be less than 5 characters";
     } else {
         $password = trim($_POST['password']);
+        $email =trim($_POST['email']);
+        $roomno=trim($_POST['roomno']);
         $userimg = trim($_POST['userimg']);
     }
 
@@ -55,18 +57,36 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (trim($_POST['password']) != trim($_POST['confirm_password'])) {
         $password_err = "Password should match";
     }
-
+    $email_err="";
+    if(empty(trim($_POST['email'])))
+    {
+        $email_err="Email cannot be blank";
+    }
+    $room_err="";
+    if(empty(trim($_POST['roomno'])))
+    { 
+       $room_err="Room no invalid";  
+    }
+    else
+    {
+        if(trim($_POST['roomno'])<0)
+        $room_err="Room no invalid"; 
+        if(trim($_POST['roomno'])>6)
+        $room_err="Room no invalid"; 
+    }
     // If there were no errors, go ahead and insert into the database
-    if (empty($username_err) && empty($userimg_err) && empty($password_err) && empty($confirm_password_err)) {
+    if (empty($username_err) && empty($userimg_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err) && empty($room_err)) {
 
-        $sql = "INSERT INTO users (username, userimg, password) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO users (username,  userimg, email, roomno, password) VALUES (?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $sql);
         if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_userimg, $param_password);
+            mysqli_stmt_bind_param($stmt, "sssss", $param_username, $param_userimg, $param_email, $param_roomno, $param_password);
 
             // Set these parameters
             $param_username = $username;
             $param_userimg = $userimg;
+            $param_email=$email;
+            $param_roomno=$roomno;
             $param_password = password_hash($password, PASSWORD_DEFAULT);
 
             // Try to execute the query
@@ -83,7 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -226,16 +245,24 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <div class="order-lg-1 col-lg-6">
                     <div class="card rounded shadow p-3 p-md-4">
                         <h3 class="text-center font-weight-bold text-primary">
-                            Please register here!
+                            Register Sub-Admin Here!!
                         </h3>
                         <form class="row g-3" action="" method="post" style="display: grid;">
                             <div class="col-md-6">
                                 <label for="name" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="inputEmail4" name="username" placeholder="Username">
                             </div>
+                              <div class="col-md-6">
+                                <label for="name" class="form-label">UserEmail</label>
+                                <input type="text" class="form-control" id="inputid4" name="email" placeholder="Useremail">
+                            </div>
                             <div class="col-md-6">
                                 <label for="userimg" class="form-label">Image URL</label>
-                                <input type="text" class="form-control" id="inputUserimg4" name="userimg" placeholder="Username">
+                                <input type="text" class="form-control" id="inputUserimg4" name="userimg" placeholder="Imageurl">
+                            </div>
+                              <div class="col-md-6">
+                                <label for="roomno" class="form-label">Room number</label>
+                                <input type="number" class="form-control" id="inputroom4" name="roomno" placeholder="Room Number">
                             </div>
                             <div class="col-md-6">
                                 <label for="inputPassword4" class="form-label">Password</label>

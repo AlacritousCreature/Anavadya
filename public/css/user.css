@@ -45,7 +45,8 @@ img {
 }
 
 .btn:hover {
-    background-color: rgb(92, 181, 216);
+    /*background-color: rgb(92, 181, 216);*/
+    background-color: rgb(241, 68, 68);
 }
 
 .cards {
@@ -74,8 +75,9 @@ img {
 }
 
 .card {
-    background-color: white;
-    border-radius: 0.40rem;
+    background-color: black;
+    border-radius: 1.40rem;
+    border: 2rem;
     box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;

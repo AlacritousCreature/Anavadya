@@ -1,11 +1,16 @@
 <?php
 
 session_start();
+require_once "config.php";
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     header("location: login.php");
 }
-
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    $conn->query("DELETE FROM users WHERE id=$id") or die('error querring database.');
+}
+// or die($conn->error())
 
 ?>
 
@@ -104,7 +109,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
         <ul class="cards">
             <?php
             require_once "config.php";
-            function component($username, $userimg)
+            function component($id, $username, $userimg, $roomno)
             {
                 $element = '
         <li class="cards_item">
@@ -115,21 +120,21 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                             Name
                         </h2>
                          <p class="card_text"> Username:
-                        ' . $username . ' <br> Room no: '. $roomno.' <br>
-                            <a href="/user/<%= user._id %>"><button class="btn card_btn">DELETE</button></a>
+                        ' . $username . ' <br> Room no: ' . $roomno . ' <br>
+                            <a href="users.php?delete=' . $id . '" class="btn card_btn">DELETE</a>
                     </div>
                 </div>
             </li>
         ';
                 echo $element;
             }
-
+            //
             $query = "SELECT * FROM users where roomno > 0";
             mysqli_query($conn, $query) or die('error querring database.');
             $result = mysqli_query($conn, $query);
 
             while ($row = mysqli_fetch_array($result)) {
-                component($row['username'], $row['userimg'], $row['roomno']);
+                component($row['id'], $row['username'], $row['userimg'], $row['roomno']);
             }
 
             ?>

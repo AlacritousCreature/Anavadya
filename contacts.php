@@ -65,19 +65,25 @@ session_start();
                     <a href="register.php" class="nav-link" id="signin">Register</a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="logout.php" class="nav-link">Logout</a>
-                </li>
-
-
-
-                <li class="nav-item">
-                    <a href="login.php" class="nav-link">Login</a>
-                </li>
+                <?php
+                if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
+                ?>
+                    <li class="nav-item">
+                        <a href="logout.php" class="nav-link">Login</a>
+                    </li>
+                <?php
+                } else {
+                ?>
+                    <li class="nav-item">
+                        <a href="login.php" class="nav-link">Logout</a>
+                    </li>
+                <?php
+                }
+                ?>
 
 
             </ul>
-            <?php if (isset($_SESSION['username']) || $_SESSION['username'] == true) {
+            <?php if (isset($_SESSION['username'])) {
             ?> <ul class="navbar-nav">
                     <li class="nav-item active">
                         <a class="nav-link" href="#"><img src="https://img.icons8.com/metro/26/ffffff/user-male.png" /><?php echo "Welcome " . $_SESSION['username'] ?></a>

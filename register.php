@@ -160,8 +160,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <li class="nav-item">
                     <a href="register.php" class="nav-link" id="signin">Register</a>
                 </li>
-                <li class="nav-item">
-                    <a href="login.php" class="nav-link">Login</a>
+                <?php
+                if (isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == true) {
+                ?>
+                    <li class="nav-item">
+                        <a href="logout.php" class="nav-link">Logout</a>
+                    </li>
+                <?php
+                }
+                ?>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><img src="https://img.icons8.com/metro/26/ffffff/user-male.png" /><?php echo "Welcome " . $_SESSION['username'] ?></a>
                 </li>
             </ul>
         </div>

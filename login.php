@@ -37,7 +37,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         $_SESSION["username"] = $username;
                         $_SESSION["id"] = $id;
                         $_SESSION["loggedin"] = true;
-
+                        $query = "SELECT * FROM users WHERE username= '$username'";
+                        mysqli_query($conn, $query) or die('error querring database.');
+                        $result = mysqli_query($conn, $query);
+                        $row = mysqli_fetch_array($result);
+                        $_SESSION["room"]=$row["roomno"];
                         $_SESSION["statusHome"] = "Welcome to Anavadya";
                         // Redirect user to home page
                         header("location: home.php");

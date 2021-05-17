@@ -5,6 +5,10 @@ session_start();
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     header("location: login.php");
 }
+if($_SESSION["room"]>0)
+{
+    header("location: occupancy.php");
+}
 require_once "config.php";
 $username = $userimg = $password = $confirm_password = "";
 $username_err = $userimg_err = $password_err = $confirm_password_err = "";

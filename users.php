@@ -6,6 +6,10 @@ require_once "config.php";
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     header("location: login.php");
 }
+if($_SESSION["room"]>0)
+{
+    header("location: occupancy.php");
+}
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
     $conn->query("DELETE FROM users WHERE id=$id") or die('error querring database.');

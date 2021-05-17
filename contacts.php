@@ -61,10 +61,7 @@ session_start();
                 <li class="nav-item">
                     <a href="contacts.php" class="nav-link">Contact Us</a>
                 </li>
-                <li class="nav-item">
-                    <a href="register.php" class="nav-link" id="signin">Register</a>
-                </li>
-
+               
                 <?php
                 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
                 ?>

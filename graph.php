@@ -103,10 +103,14 @@ $chart_data = substr($chart_data, 0, -2);
                 <li class="nav-item">
                     <a href="contacts.php" class="nav-link">Contact Us</a>
                 </li>
+                <?php
+                 if($_SESSION["room"]==0)
+                { ?>
                 <li class="nav-item">
                     <a href="register.php" class="nav-link" id="signin">Register</a>
                 </li>
-                <?php
+                <?php }
+                
                 if (isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == true) {
                 ?>
                     <li class="nav-item">

@@ -62,10 +62,13 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                 <li class="nav-item">
                     <a href="contacts.php" class="nav-link">Contact Us</a>
                 </li>
+                <?php
+                 if($_SESSION["room"]==0)
+                { ?>
                 <li class="nav-item">
                     <a href="register.php" class="nav-link" id="signin">Register</a>
                 </li>
-                <?php
+                <?php }
                 if (isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == true) {
                 ?>
                     <li class="nav-item">
@@ -271,12 +274,15 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
             </div>
         </div>
     </section>
-
+    <?php 
+     if($_SESSION["room"]==0)
+     {?>
     <section class="section-content-block">
         <div class="d-flex justify-content-center align-items-center">
             <a href="users.php"><button class='sbtn gradient-btn purple-btn rounded-btn'>See Anavadya's Sub-Admin's</button></a>
         </div>
     </section>
+    <?php } ?>
     <div id="footid"></div>
 
 </body>
